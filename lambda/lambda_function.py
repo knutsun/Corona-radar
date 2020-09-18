@@ -51,6 +51,17 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         username = slots["username"].value
         
+        
+        parameters = {
+            'ids': self.ids
+        }
+
+        response = requests.get(
+            self.base_url,
+            headers={'authorization': 'Bearer {}'.format('AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'},
+            params=parameters)
+        
+        
         response = requests.get('https://www.google.com')
         rc = response.status_code
         speak_output = "The username you said is {username} and the response code is {rc}".format(username=username, rc=rc)
