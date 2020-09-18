@@ -37,15 +37,19 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 
-class HelloWorldIntentHandler(AbstractRequestHandler):
-    """Handler for Hello World Intent."""
+class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
+    """Handler for CaptureUsernameID Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("HelloWorldIntent")(handler_input)
+        return ask_utils.is_intent_name("CaptureUsernameIDIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello World!"
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        username = slots["username"].value
+        
+        speak_output = "The username you said is #{username}".format(username=username)
 
         return (
             handler_input.response_builder
