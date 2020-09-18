@@ -62,7 +62,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         
         
         rc = response.status_code
-        res = response.json()[]
+        res = response.json()
         speak_output = "The username you said is {username} and the response code is {rc} and the response is {res}".format(username=username, rc=rc, res=res)
 
         return (
