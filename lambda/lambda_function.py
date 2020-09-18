@@ -14,6 +14,7 @@ from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
 
+import csv
 import requests
 
 logger = logging.getLogger(__name__)
@@ -64,10 +65,8 @@ class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
         rc = response.status_code
         res = response.json()['data']
         
-        for iden in res:
-            speak_output = speak_output + str(iden)
             
-        speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {res}".format(topic=topic, rc=rc, res=res)
+        speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {idens}".format(topic=topic, rc=rc, res=res)
 
         return (
             handler_input.response_builder
@@ -76,6 +75,39 @@ class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
                 .response
         )
 
+
+class GetCovidNumbersIntentHandler(AbstractRequestHandler):
+    """Handler for GetCovidNumbers Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("GetCovidNumbersIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        topic = slots["topic"].value
+        
+        
+        # parameters = {
+        #     'ids': ['1228393702244134912']
+        # }
+
+        response = requests.get(
+            'http://coronavirusapi.com/states.csv')
+        
+        
+        rc = response.status_code
+        res = response.json()
+            
+        speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {idens}".format(topic=topic, rc=rc, idens=idens)
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
 
 class HelpIntentHandler(AbstractRequestHandler):
     """Handler for Help Intent."""
