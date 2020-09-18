@@ -49,7 +49,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         username = slots["username"].value
         
-        speak_output = "The username you said is #{username}".format(username=username)
+        speak_output = "The username you said is {username}".format(username=username)
 
         return (
             handler_input.response_builder
