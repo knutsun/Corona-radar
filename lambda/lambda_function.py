@@ -53,7 +53,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         
         
         parameters = {
-            'ids': self.ids
+            'ids': ['1228393702244134912']
         }
 
         response = requests.get(
