@@ -86,7 +86,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         slots = handler_input.request_envelope.request.intent.slots
-        topic = slots["topic"].value
+        # topic = slots["topic"].value
         
         
         # parameters = {
