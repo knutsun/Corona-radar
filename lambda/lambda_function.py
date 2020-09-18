@@ -29,12 +29,12 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello! Welcome to Tweeter! Ask for a username's id number."
+        speak_output = "Hello! Welcome to Tweeter! What topic would you like to search for?"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask("Go ahead, ask for a username's id number.")
+                .ask("Go ahead, search for a topic.")
                 .response
         )
 
