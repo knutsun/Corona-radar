@@ -100,7 +100,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         rc = response.status_code
         res = response.json()
             
-        speak_output = "The response code is {rc} and the response is {idens}".format(rc=rc, res=res)
+        speak_output = "The response code is {rc} and the response is {res}".format(rc=rc, res=res)
 
         return (
             handler_input.response_builder
