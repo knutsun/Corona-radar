@@ -57,7 +57,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         # }
 
         response = requests.get(
-            'https://api.twitter.com/2/users/by/username/' + str(username)
+            'https://api.twitter.com/2/users/by/username/' + str(username),
             headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
         
         
