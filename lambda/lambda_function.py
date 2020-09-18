@@ -53,7 +53,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         
         response = requests.get('https://www.google.com')
         rc = response.status_code)
-        speak_output = "The username you said is {username} and the response code is {rc}".format(username=username, rc=rc)
+        speak_output = "The username you said is {username}".format(username=username)
 
         return (
             handler_input.response_builder
