@@ -52,18 +52,17 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         username = slots["username"].value
         
         
-        parameters = {
-            'ids': ['1228393702244134912']
-        }
+        # parameters = {
+        #     'ids': ['1228393702244134912']
+        # }
 
         response = requests.get(
-            'https://api.twitter.com/2/tweets',
-            headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'},
-            params=parameters)
+            'https://api.twitter.com/2/users/by/username/' + str(username)
+            headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
         
         
         rc = response.status_code
-        res = response.json()
+        res = response.json()[]
         speak_output = "The username you said is {username} and the response code is {rc} and the response is {res}".format(username=username, rc=rc, res=res)
 
         return (
