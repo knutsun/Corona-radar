@@ -63,6 +63,10 @@ class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
         
         rc = response.status_code
         res = response.json()['data']
+        
+        for iden in res:
+            speak_output = speak_output + str(iden)
+            
         speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {res}".format(topic=topic, rc=rc, res=res)
 
         return (
