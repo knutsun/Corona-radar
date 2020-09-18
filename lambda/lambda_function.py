@@ -39,7 +39,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 
-class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
+class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
     """Handler for CaptureUsernameID Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
