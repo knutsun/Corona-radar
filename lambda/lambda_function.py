@@ -40,10 +40,10 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
 
 class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
-    """Handler for CaptureUsernameID Intent."""
+    """Handler for CaptureRecentTweets Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("CaptureUsernameIDIntent")(handler_input)
+        return ask_utils.is_intent_name("CaptureRecentTweetsIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
