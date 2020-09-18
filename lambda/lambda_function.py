@@ -49,7 +49,7 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         slots = handler_input.request_envelope.request.intent.slots
-        username = slots["username"].value
+        topic = slots["topic"].value
         
         
         # parameters = {
@@ -57,13 +57,13 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         # }
 
         response = requests.get(
-            'https://api.twitter.com/2/users/by/username/' + str(username),
+            'https://api.twitter.com/2/tweets/search/recent?query=' + str(topic),
             headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
         
         
         rc = response.status_code
         res = response.json()
-        speak_output = "The username you said is {username} and the response code is {rc} and the response is {res}".format(username=username, rc=rc, res=res)
+        speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {res}".format(topic=topic, rc=rc, res=res)
 
         return (
             handler_input.response_builder
