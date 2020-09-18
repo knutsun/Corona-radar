@@ -52,8 +52,8 @@ class CaptureUsernameIDIntentHandler(AbstractRequestHandler):
         username = slots["username"].value
         
         response = requests.get('https://www.google.com')
-        print(response.status_code)
-        speak_output = "The username you said is {username}".format(username=username)
+        rc = response.status_code)
+        speak_output = "The username you said is {username} and the response code is {rc}".format(username=username, rc=rc)
 
         return (
             handler_input.response_builder
