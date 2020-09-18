@@ -56,14 +56,14 @@ class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
         #     'ids': ['1228393702244134912']
         # }
 
-        response = requests.get(
-            'https://api.twitter.com/2/tweets/search/recent?query=' + str(topic),
-            headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
+        # response = requests.get(
+        #     'https://api.twitter.com/2/tweets/search/recent?query=' + str(topic),
+        #     headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
         
         
-        rc = response.status_code
-        res = response.json()
-        speak_output = "The topic you said is and the response code is {rc} and the response is {res}".format(rc=rc, res=res)
+        # rc = response.status_code
+        # res = response.json()
+        speak_output = "The topic you said is and the response code is and the response is"
 
         return (
             handler_input.response_builder
