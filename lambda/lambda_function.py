@@ -15,7 +15,7 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 
 import csv
-import pandas
+import pandas as pd
 import requests
 
 logger = logging.getLogger(__name__)
