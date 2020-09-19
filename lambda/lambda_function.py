@@ -86,20 +86,32 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         slots = handler_input.request_envelope.request.intent.slots
-        # topic = slots["topic"].value
+        state_slot = slots["state"].value
         
-        
-        # parameters = {
-        #     'ids': ['1228393702244134912']
-        # }
+        STATES_URL = 'http://coronavirusapi.com/states.csv'
 
-        response = requests.get(
-            'http://coronavirusapi.com/states.csv')
+        df = pd.read_csv(STATES_URL)
         
+        states = {
+            "AL": "Alabama",
+            "AK": "Alaska"
+
+
+
+            # "AK", "AZ", "AR", "CA", "CO", "CT", "DC", "DE", "FL", "GA",
+            # "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+            # "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+            # "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "PR", "RI", "SC",
+            # "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+
+        }
+
+
+        for index, state in df.iterrows():
         
-        rc = response.status_code
-        res = response
-            
+            if state[0] == state_slot:
+                print('The state of', states[state[0]], 'has had', state[3], 'deaths')
+
         speak_output = "The response code is {rc} and the response is {res}".format(rc=rc, res=res)
 
         return (
