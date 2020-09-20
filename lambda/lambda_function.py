@@ -110,10 +110,15 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         speak_output = ''
 
         for index, state in df.iterrows():
-            print(state[0], state_slot)
-            if state[0] == state_slot:
-                    # print('The state of', states[state[0]], 'has had', state[3], 'deaths')
-                speak_output = speak_output + 'The state of ' + states[state[0]] + ' has had ' + state[3] + 'deaths'
+            
+            # if slot_type is a state 
+            if slot_type in states.values():
+                speak_output = speak_output + 'this happened'
+            
+            
+            # if state[0] == state_slot:
+            #         # print('The state of', states[state[0]], 'has had', state[3], 'deaths')
+            #     speak_output = speak_output + 'The state of ' + states[state[0]] + ' has had ' + state[3] + 'deaths'
 
         return (
             handler_input.response_builder
