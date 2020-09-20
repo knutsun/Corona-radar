@@ -113,7 +113,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
             
             # if slot_type is a state 
             if state_slot in states.values():
-                speak_output = speak_output + 'this happened'
+                speak_output = speak_output + 'this happened' + states[state_slot.index]
             
             
             # if state[0] == state_slot:
