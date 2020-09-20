@@ -114,7 +114,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
             for index, st in enumerate(states):
                 if state[0] == st:
                     if states[st] == state_slot:
-                        speak_output = speak_output + str(st) + 'has had' + str(state[3]) + 'deaths from coronavirus'
+                        speak_output = speak_output + state_slot + ' has had ' + str(state[3]) + ' deaths from coronavirus'
 
         return (
             handler_input.response_builder
