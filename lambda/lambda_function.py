@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# This sample demonstrates handling intents from an Alexa skill using the Alexa Skills Kit SDK for Python.
-# Please visit https://alexa.design/cookbook for additional examples on implementing slots, dialog management,
-# session persistence, api calls, and more.
-# This sample is built using the handler classes approach in skill builder.
 import logging
 import ask_sdk_core.utils as ask_utils
 
@@ -31,43 +27,13 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Hello! Welcome to Tweeter! What topic would you like to search for?"
+        speak_output = "Hello! Welcome to Corona radar! \
+            You can ask questions like 'How many people have died in Texas'"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask("Go ahead, search for a topic.")
-                .response
-        )
-
-
-class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
-    """Handler for CaptureRecentTweets Intent."""
-    def can_handle(self, handler_input):
-        # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("CaptureRecentTweetsIntent")(handler_input)
-
-    def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
-        
-        slots = handler_input.request_envelope.request.intent.slots
-        topic = slots["topic"].value
-
-        response = requests.get(
-            'https://api.twitter.com/2/tweets/search/recent?query=' + topic,
-            headers={'authorization': 'Bearer ' + 'AAAAAAAAAAAAAAAAAAAAAHW1HgEAAAAAAH%2BIRqvHUQiRtNB%2BI6pYSFkiEhQ%3DQpkPWVQzI7mTi2WYkMPDsuXF6LcZ5yTqCUicawbDqx6UXdzi5u'})
-        
-        
-        rc = response.status_code
-        res = response.json()['data']
-        
-            
-        speak_output = "The topic you said is {topic} and the response code is {rc} and the response is {idens}".format(topic=topic, rc=rc, res=res)
-
-        return (
-            handler_input.response_builder
-                .speak(speak_output)
-                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask("Go ahead, ask a question.")
                 .response
         )
 
@@ -261,7 +227,6 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-# sb.add_request_handler(CaptureRecentTweetsIntentHandler())
 sb.add_request_handler(GetCovidNumbersIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
