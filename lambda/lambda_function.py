@@ -52,11 +52,6 @@ class CaptureRecentTweetsIntentHandler(AbstractRequestHandler):
         
         slots = handler_input.request_envelope.request.intent.slots
         topic = slots["topic"].value
-        
-        
-        # parameters = {
-        #     'ids': ['1228393702244134912']
-        # }
 
         response = requests.get(
             'https://api.twitter.com/2/tweets/search/recent?query=' + topic,
