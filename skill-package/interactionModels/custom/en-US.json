@@ -1,0 +1,149 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "hey coronaradar",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "HelloWorldIntent",
+          "slots": [],
+          "samples": [
+            "hello",
+            "how are you",
+            "say hi world",
+            "say hi",
+            "hi",
+            "say hello world",
+            "say hello"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "CaptureRecentTweetsIntent",
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.SearchQuery",
+              "samples": [
+                "Kenosha",
+                "Donald Trump",
+                "NASA",
+                "Python"
+              ]
+            }
+          ],
+          "samples": [
+            "What are the tweets about {topic}",
+            "What are the most recent tweets about {topic} "
+          ]
+        },
+        {
+          "name": "GetCovidNumbersIntent",
+          "slots": [
+            {
+              "name": "state",
+              "type": "AMAZON.US_STATE",
+              "samples": [
+                "{state}"
+              ]
+            }
+          ],
+          "samples": [
+            "how many dead in {state}",
+            "how many people have died from coronavirus in {state}",
+            "how many people have covid in {state}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "realDonaldTrump"
+              }
+            },
+            {
+              "name": {
+                "value": "ChazSelph"
+              }
+            }
+          ],
+          "name": "AMAZON.Person"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "CaptureRecentTweetsIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "topic",
+              "type": "AMAZON.SearchQuery",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.977448191303.988681752850"
+              }
+            }
+          ]
+        },
+        {
+          "name": "GetCovidNumbersIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "state",
+              "type": "AMAZON.US_STATE",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1261401966358.1541284122140"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.977448191303.988681752850",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What {topic}  would you like to search for?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1261401966358.1541284122140",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What {state} would you like to search for?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "12"
+}
