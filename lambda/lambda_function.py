@@ -138,76 +138,76 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         
         STATES_URL = 'http://coronavirusapi.com/states.csv'
 
-        # df = pd.read_csv(STATES_URL)
+        df = pd.read_csv(STATES_URL)
         
-        # states = {
-        #             "AL": "Alabama",
-        #             "AK": "Alaska",
-        #             "AR": "Arkansas",
-        #             "CA": "California",
-        #             "CO": "Colorado",
-        #             "CT": "Connecticut",
-        #             "DC": "Washington D.C.",
-        #             "DE": "Delaware",
-        #             "FL": "Florida",
-        #             "GA": "Georgia",
-        #             "HI": "Hawaii",
-        #             "ID": "Idaho",
-        #             "IL": "Illinois",
-        #             "IN": "Indiana",
-        #             "IA": "Iowa",
-        #             "KS": "Kansas",
-        #             "KY": "Kentucky",
-        #             "LA": "Louisiana",
-        #             "ME": "Maine",
-        #             "MD": "Maryland",
-        #             "MA": "Massachusetts",
-        #             "MI": "Michigan",
-        #             "MN": "Minnesota",
-        #             "MS": "Mississippi",
-        #             "MO": "Missouri",
-        #             "MT": "Montana",
-        #             "NE": "Nebraska",
-        #             "NV": "Nevada",
-        #             "NH": "New Hampshire",
-        #             "NJ": "New Jersey",
-        #             "NM": "New Mexico",
-        #             "NY": "New York",
-        #             "NC": "North Carolina",
-        #             "ND": "North Dakota",
-        #             "OH": "Ohio",
-        #             "OK": "Oklahoma",
-        #             "OR": "Oregon",
-        #             "PA": "Pennsylvania",
-        #             "PR": "Puerto Rico",
-        #             "RI": "Rhode Island",
-        #             "SC": "South Carolina",
-        #             "SD": "South Dakota",
-        #             "TN": "Tennessee",
-        #             "TX": "Texas",
-        #             "UT": "Utah",
-        #             "VT": "Vermont",
-        #             "VA": "Virginia",
-        #             "WA": "Washington",
-        #             "WV": "West Virginia",
-        #             "WI": "Wisconsin",
-        #             "WY": "Wyoming"
-        #         }
+        states = {
+                    "AL": "Alabama",
+                    "AK": "Alaska",
+                    "AR": "Arkansas",
+                    "CA": "California",
+                    "CO": "Colorado",
+                    "CT": "Connecticut",
+                    "DC": "Washington D.C.",
+                    "DE": "Delaware",
+                    "FL": "Florida",
+                    "GA": "Georgia",
+                    "HI": "Hawaii",
+                    "ID": "Idaho",
+                    "IL": "Illinois",
+                    "IN": "Indiana",
+                    "IA": "Iowa",
+                    "KS": "Kansas",
+                    "KY": "Kentucky",
+                    "LA": "Louisiana",
+                    "ME": "Maine",
+                    "MD": "Maryland",
+                    "MA": "Massachusetts",
+                    "MI": "Michigan",
+                    "MN": "Minnesota",
+                    "MS": "Mississippi",
+                    "MO": "Missouri",
+                    "MT": "Montana",
+                    "NE": "Nebraska",
+                    "NV": "Nevada",
+                    "NH": "New Hampshire",
+                    "NJ": "New Jersey",
+                    "NM": "New Mexico",
+                    "NY": "New York",
+                    "NC": "North Carolina",
+                    "ND": "North Dakota",
+                    "OH": "Ohio",
+                    "OK": "Oklahoma",
+                    "OR": "Oregon",
+                    "PA": "Pennsylvania",
+                    "PR": "Puerto Rico",
+                    "RI": "Rhode Island",
+                    "SC": "South Carolina",
+                    "SD": "South Dakota",
+                    "TN": "Tennessee",
+                    "TX": "Texas",
+                    "UT": "Utah",
+                    "VT": "Vermont",
+                    "VA": "Virginia",
+                    "WA": "Washington",
+                    "WV": "West Virginia",
+                    "WI": "Wisconsin",
+                    "WY": "Wyoming"
+                }
 
         speak_output = ''
 
         data_struc = {
         }
 
-        # for index, state in df.iterrows():
-        #     pass
-            # for index, st in enumerate(states):
-            #     if state[0] == st:
-            #         data_struc[state[0]] = state[3]
+        for index, state in df.iterrows():
 
-        # ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
+            for index, st in enumerate(states):
+                if state[0] == st:
+                    data_struc[state[0]] = state[3]
 
-        # speak_output = speak_output + str(ordered_struc[:number_slot])
+        ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
+
+        speak_output = speak_output + str(ordered_struc[:number_slot])
 
         return (
             handler_input.response_builder
