@@ -208,7 +208,8 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
         tops = ordered_struc
         for state, count in enumerate(tops):
-            speak_output = speak_output + ' ' + str(count[0]) + ' with ' + str(count[1]) + ' deaths.'
+            speak_output = speak_output + 'This is a test'
+            # speak_output = speak_output + ' ' + str(count[0]) + ' with ' + str(count[1]) + ' deaths.'
 
         return (
             handler_input.response_builder
