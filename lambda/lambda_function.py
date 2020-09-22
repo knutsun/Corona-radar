@@ -206,7 +206,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
                     data_struc[state[0]] = state[3]
 
         ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
-        speak_output = 'this is a test'
+
         # speak_output = speak_output + str(ordered_struc[:number_slot])
         for state, count in enumerate(ordered_struc):
             speak_output = speak_output + str(count[0]) + str(count[1])
