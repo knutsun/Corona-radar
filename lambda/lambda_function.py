@@ -200,10 +200,10 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         }
 
         for index, state in df.iterrows():
-
-            for index, st in enumerate(states):
-                if state[0] == st:
-                    data_struc[state[0]] = state[3]
+            pass
+            # for index, st in enumerate(states):
+            #     if state[0] == st:
+            #         data_struc[state[0]] = state[3]
 
         # ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
 
