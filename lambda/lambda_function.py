@@ -13,6 +13,8 @@ from ask_sdk_model import Response
 import csv
 import pandas as pd
 import requests
+from enums.UrlsEnum import Urls as Urls
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -50,9 +52,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         state_slot = slots["state"].value
         
-        STATES_URL = 'http://coronavirusapi.com/states.csv'
-
-        df = pd.read_csv(STATES_URL)
+        df = pd.read_csv(Urls.States)
         
         states = {
                     "AL": "Alabama",
@@ -135,10 +135,8 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         
         slots = handler_input.request_envelope.request.intent.slots
         number_slot = slots["number"].value
-        
-        STATES_URL = 'http://coronavirusapi.com/states.csv'
 
-        df = pd.read_csv(STATES_URL)
+        df = pd.read_csv(Urls.States)
         
         states = {
                     "AL": "Alabama",
