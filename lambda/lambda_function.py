@@ -13,7 +13,7 @@ from ask_sdk_model import Response
 import csv
 import pandas as pd
 import requests
-from UrlsEnum import Urls as Urls
+import UrlsEnum
 
 
 logger = logging.getLogger(__name__)
@@ -136,7 +136,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         number_slot = slots["number"].value
 
-        df = pd.read_csv(Urls.States)
+        df = pd.read_csv()
         
         states = {
                     "AL": "Alabama",
@@ -207,7 +207,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         tops = ordered_struc
         slice_num = number_slot
         for state, count in enumerate(tops[:int(slice_num)]):
-            speak_output = speak_output + ' ' + str(count[0]) + ' with ' + str(count[1]) + ' deaths. '
+            speak_output = speak_output + ' ' + str(states[count[0]]) + ' with ' + str(count[1]) + ' deaths. '
 
         return (
             handler_input.response_builder
