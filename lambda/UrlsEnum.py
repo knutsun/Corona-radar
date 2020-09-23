@@ -1,7 +1,7 @@
 import enum
 
 
-class Urls(enum.Enum):
+class UrlsEnum(enum.Enum):
 
     States = 'http://coronavirusapi.com/states.csv'
     Time_series = 'http://coronavirusapi.com/time_series.csv'
