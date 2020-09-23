@@ -13,7 +13,7 @@ from ask_sdk_model import Response
 import csv
 import pandas as pd
 import requests
-from UrlsEnum import UrlsEnum as Urls
+from UrlsEnum import Urls 
 
 
 logger = logging.getLogger(__name__)
