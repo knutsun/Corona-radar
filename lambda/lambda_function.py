@@ -105,7 +105,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         state_slot = slots["state"].value
 
-        df = pd.read_csv(UrlsEnum.UrlsEnum.States)
+        df = pd.read_csv(UrlsEnum.States)
         
         speak_output = ''
 
