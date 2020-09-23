@@ -207,7 +207,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         tops = ordered_struc
         slice_num = number_slot
         for state, count in enumerate(tops[:int(slice_num)]):
-            speak_output = speak_output + ' ' + str(states[count[0]]) + ' with ' + str(count[1]) + ' deaths. '
+            speak_output = speak_output + ' ' + str(count[0]) + ' with ' + str(count[1]) + ' deaths. '
 
         return (
             handler_input.response_builder
