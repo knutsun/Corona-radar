@@ -136,7 +136,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         number_slot = slots["number"].value
 
-        df = pd.read_csv('http://coronavirusapi.com/states.csv')
+        df = pd.read_csv(Urls.States)
         
         states = {
                     "AL": "Alabama",
