@@ -13,7 +13,7 @@ from ask_sdk_model import Response
 import csv
 import pandas as pd
 import requests
-import UrlsEnum from enums
+import UrlsEnum
 # from enums.UrlsEnum import Urls as Urls
 
 
