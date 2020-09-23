@@ -13,7 +13,7 @@ from ask_sdk_model import Response
 import csv
 import pandas as pd
 import requests
-from UrlsEnum import UrlsEnum as Urls
+import UrlsEnum
 
 
 logger = logging.getLogger(__name__)
@@ -105,7 +105,7 @@ class GetCovidNumbersIntentHandler(AbstractRequestHandler):
         slots = handler_input.request_envelope.request.intent.slots
         state_slot = slots["state"].value
 
-        df = pd.read_csv('http://coronavirusapi.com/states.csv')
+        df = pd.read_csv(UrlsEnum.Urls.States)
         
         speak_output = ''
 
