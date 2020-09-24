@@ -137,7 +137,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         slots = handler_input.request_envelope.request.intent.slots
-        section_slot = slots["section"].value
+
         number_slot = slots["number"].value
 
         df = pd.read_csv(urls["states"])
@@ -153,6 +153,43 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
                     data_struc[state[0]] = state[3]
 
         ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
+
+        for state, count in enumerate(ordered_struc[:int(number_slot)]):
+            speak_output = speak_output + ' ' + str(states[count[0]]) + ' with ' + str(count[1]) + ' deaths. '
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class GetBottomCovidNumbersIntentHandler(AbstractRequestHandler):
+    """Handler for GetBottomCovidNumbers Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("GetBottomCovidNumbersIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        
+        slots = handler_input.request_envelope.request.intent.slots
+
+        number_slot = slots["number"].value
+
+        df = pd.read_csv(urls["states"])
+        
+        speak_output = ''
+
+        data_struc = {
+        }
+
+        for index, state in df.iterrows():
+            for index, st in enumerate(states):
+                if state[0] == st:
+                    data_struc[state[0]] = state[3]
+
+        ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=False)
 
         for state, count in enumerate(ordered_struc[:int(number_slot)]):
             speak_output = speak_output + ' ' + str(states[count[0]]) + ' with ' + str(count[1]) + ' deaths. '
