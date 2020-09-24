@@ -72,12 +72,12 @@ states = {
                     "WI": "Wisconsin",
                     "WY": "Wyoming"
                 }
-                
+
 urls = {
     "states": "http://coronavirusapi.com/states.csv",
     "time_series": "http://coronavirusapi.com/time_series.csv",
     "time_series_by_state": "http://coronavirusapi.com/getTimeSeries/"
-    }
+}
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
