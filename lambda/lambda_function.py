@@ -11,7 +11,6 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model import Response
 
 import csv
-import json
 import pandas as pd
 import requests
 
@@ -141,7 +140,7 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         section_slot = slots["section"].value
         number_slot = slots["number"].value
 
-        df = pd.read_csv('http://coronavirusapi.com/states.csv')
+        df = pd.read_csv(urls["states"])
         
         speak_output = ''
 
