@@ -148,15 +148,14 @@ class GetTopCovidNumbersIntentHandler(AbstractRequestHandler):
         }
 
         for index, state in df.iterrows():
-
             for index, st in enumerate(states):
                 if state[0] == st:
                     data_struc[state[0]] = state[3]
 
         ordered_struc = sorted(data_struc.items(), key=lambda x: x[1], reverse=True)
         tops = ordered_struc
-        slice_num = number_slot
-        for state, count in enumerate(tops[:int(slice_num)]):
+        # slice_num = number_slot
+        for state, count in enumerate(tops[:int(number_slot)]):
             speak_output = speak_output + ' ' + str(states[count[0]]) + ' with ' + str(count[1]) + ' deaths. '
 
         return (
