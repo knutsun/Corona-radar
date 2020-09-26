@@ -115,7 +115,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         headers={'Authorization: Bearer '.format(accessToken)})
         
         
-        speak_output = str(response.json() )
+        speak_output = ''
 
         return (
             handler_input.response_builder
