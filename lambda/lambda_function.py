@@ -97,7 +97,32 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
+class GetLocationIntentHandler(AbstractRequestHandler):
+    """Handler for GetLocation Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("GetLocationIntent")(handler_input)
 
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        
+        slots = handler_input.request_envelope.request.intent.slots
+        # state_slot = slots["state"].value
+        deviceId = this.event.context.System.device.deviceId
+        accessToken = this.event.context.System.apiAccessToken
+
+        response = requests.get('https://api.amazonalexa.com/v1/devices/{deviceId}/settings/address'.format({deviceId=deviceId}))
+        
+        
+        speak_output = response.json() 
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+        
 class GetCovidNumbersIntentHandler(AbstractRequestHandler):
     """Handler for GetCovidNumbers Intent."""
     def can_handle(self, handler_input):
