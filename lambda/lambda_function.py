@@ -111,7 +111,8 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         deviceId = this.event.context.System.device.deviceId
         accessToken = this.event.context.System.apiAccessToken
 
-        response = requests.get('https://api.amazonalexa.com/v1/devices/{deviceId}/settings/address'.format({deviceId=deviceId}))
+        response = requests.get('https://api.amazonalexa.com/v1/devices/{deviceId}/settings/address'.format({deviceId=deviceId}),
+        headers = {'Authorization: Bearer '.format(accessToken)})
         
         
         speak_output = str(response.json() )
