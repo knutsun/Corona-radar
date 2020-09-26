@@ -114,7 +114,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         response = requests.get('https://api.amazonalexa.com/v1/devices/{deviceId}/settings/address'.format({deviceId=deviceId}))
         
         
-        speak_output = response.json() 
+        speak_output = str(response.json() )
 
         return (
             handler_input.response_builder
