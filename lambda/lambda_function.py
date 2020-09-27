@@ -107,7 +107,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-        slots = handler_input.request_envelope.request.intent.slots
+        # slots = handler_input.request_envelope.request.intent.slots
         # state_slot = slots["state"].value
         # deviceId = this.event.context.System.device.deviceId
         # accessToken = this.event.context.System.apiAccessToken
