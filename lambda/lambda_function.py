@@ -117,7 +117,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         response = requests.get(url, headers=headers)
         
         
-        speak_output = '{}'.format(str(response.json()))
+        speak_output = '{} {} {}'.format(str(response.json()['addressLine1']), str(response.json()['city']), str(response.json()['stateOrRegion']))
 
         return (
             handler_input.response_builder
