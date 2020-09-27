@@ -116,7 +116,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
                 'Accept: application/json'  })
         
         
-        speak_output = '{}'.format(str(response.status_code))
+        speak_output = 'hello'
 
         return (
             handler_input.response_builder
