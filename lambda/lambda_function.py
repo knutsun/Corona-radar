@@ -156,6 +156,31 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
+class GetUserLocationIntentHandler(AbstractRequestHandler):
+    """Handler for GGetUserLocation Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("GGetUserLocationIntent")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        
+        accessToken = handler_input.request_envelope.context.system.api_access_token
+        url = 'https://api.amazonalexa.com/v2/accounts/~current/settings/Profile.name'
+        headers = {
+            'Authorization': 'Bearer ' + accessToken, 
+            'Accept': 'application/json'
+        }
+        response = requests.get(url, headers=headers)
+
+        speak_output = '{}'.format(response.json())
+        
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response)
+
 class GetLatestNumbersByLocationIntentHandler(AbstractRequestHandler):
     """Handler for GetLatestNumbersByLocation Intent."""
     def can_handle(self, handler_input):
@@ -408,6 +433,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
+sb.add_request_handler(GetUserLocationIntentHandler())
 sb.add_request_handler(GetLatestNumbersByLocationIntentHandler())
 sb.add_request_handler(GetCovidNumbersIntentHandler())
 sb.add_request_handler(GetTopCovidNumbersIntentHandler())
