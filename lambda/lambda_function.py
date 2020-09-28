@@ -191,8 +191,8 @@ class GetLatestNumbersByLocationIntentHandler(AbstractRequestHandler):
         nyt = ''
         for data in nyt_response.json()['data']:
             if data['display_name'].upper() == str(county_response.json()['County']).upper():
-                nyt = data['latest']['deaths']
-        speak_output = '{} people have died from coronavirus in {} county'.format(nyt, str(county_response.json()['County']))
+                nyt = data['latest']['deaths'], data['latest']['cases']
+        speak_output = 'In {} county, {} people have died and there are {} existing cases of coronavirus'.format(str(county_response.json()['County']), nyt[0], nyt[1])
 
         return (
             handler_input.response_builder
