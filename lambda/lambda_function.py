@@ -157,10 +157,10 @@ class LaunchRequestHandler(AbstractRequestHandler):
         )
 
 class GetUserNameIntentHandler(AbstractRequestHandler):
-    """Handler for GGetUserName Intent."""
+    """Handler for GetUserName Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("GGetUserNameIntent")(handler_input)
+        return ask_utils.is_intent_name("GetUserNameIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
