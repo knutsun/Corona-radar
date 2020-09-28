@@ -119,8 +119,16 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         address_line_one = response.json()['addressLine1']
         city = response.json()['city']
         state_or_region = response.json()['stateOrRegion']
+        
 
-        speak_output = '{} {} {}'.format(address_line_one, city, state_or_region)
+        url = 'http://www.yaddress.net/api/address'
+        data = {
+            "AddressLine1": address_line_one,
+            "AddressLine2": '{} {}'.format(city, state_or_region)
+        }
+        countyResponse = requests.get(url, data=data)
+        
+        speak_output = '{}'.format(str(countyResponse.json()))
 
         return (
             handler_input.response_builder
