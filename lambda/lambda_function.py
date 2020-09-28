@@ -128,7 +128,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         }
         countyResponse = requests.get(url, data=data)
         
-        speak_output = '{}'.format(str(countyResponse.json()['County']))
+        speak_output = 'You live in {} county'.format(str(countyResponse.json()['County']))
 
         return (
             handler_input.response_builder
