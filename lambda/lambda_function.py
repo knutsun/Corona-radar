@@ -132,7 +132,7 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         nyt_response = requests.get(nyt_url)
         nyt = ''
         for data in nyt_response.json()['data']:
-            if data['display_name'] == str(county_response.json()['County']):
+            if data['display_name'] == str(county_response.json()['County']).upper():
                 nyt = data['display_name']
         speak_output = 'You live in {} county and {}'.format(str(county_response.json()['County']), nyt)
 
