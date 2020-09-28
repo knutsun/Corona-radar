@@ -107,17 +107,20 @@ class GetLocationIntentHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-        # slots = handler_input.request_envelope.request.intent.slots
-        # state_slot = slots["state"].value
         accessToken = handler_input.request_envelope.context.system.api_access_token
         device_id = handler_input.request_envelope.context.system.device.device_id
-        url = 'https://api.amazonalexa.com/v1/devices/' + str(device_id) + '/settings/address'
-        headers = {'Authorization': 'Bearer ' + str(accessToken), 
-                    'Accept': 'application/json'}
+        url = 'https://api.amazonalexa.com/v1/devices/{}/settings/address'.format(device_id)
+        headers = {
+            'Authorization': 'Bearer ' + accessToken, 
+            'Accept': 'application/json'
+        }
         response = requests.get(url, headers=headers)
         
-        
-        speak_output = '{} {} {}'.format(str(response.json()['addressLine1']), str(response.json()['city']), str(response.json()['stateOrRegion']))
+        address_line_one = response.json()['addressLine1']
+        city = response.json()['city']
+        state_or_region = response.json()['stateOrRegion']
+
+        speak_output = '{} {} {}'.format(address_line_one, city, state_or_region)
 
         return (
             handler_input.response_builder
