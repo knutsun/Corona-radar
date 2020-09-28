@@ -121,14 +121,20 @@ class GetLocationIntentHandler(AbstractRequestHandler):
         state_or_region = response.json()['stateOrRegion']
         
 
-        url = 'http://www.yaddress.net/api/address'
+        address_url = 'http://www.yaddress.net/api/address'
         data = {
             "AddressLine1": address_line_one,
             "AddressLine2": '{} {}'.format(city, state_or_region)
         }
-        countyResponse = requests.get(url, data=data)
+        county_response = requests.get(address_url, data=data)
         
-        speak_output = 'You live in {} county'.format(str(countyResponse.json()['County']))
+        nyt_url = 'https://static01.nyt.com/newsgraphics/2020/03/16/coronavirus-maps/c17bfa1a1aeb007490a5a6ca6ee7996ccefbe617/data/timeseries/en/USA-16.json'
+        nyt_response = requests.get(nyt_url)
+        nyt = ''
+        for data in nyt_response.json()['data']:
+            if data['display_name'] == str(county_response.json()['County']):
+                nyt = data['display_name']
+        speak_output = 'You live in {} county and {}'.format(str(county_response.json()['County']), nyt)
 
         return (
             handler_input.response_builder
