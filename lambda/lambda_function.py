@@ -156,11 +156,11 @@ class LaunchRequestHandler(AbstractRequestHandler):
                 .response
         )
 
-class GetLocationIntentHandler(AbstractRequestHandler):
-    """Handler for GetLocation Intent."""
+class GetLatestNumbersByLocationIntentHandler(AbstractRequestHandler):
+    """Handler for GetLatestNumbersByLocation Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("GetLocationIntent")(handler_input)
+        return ask_utils.is_intent_name("GetLatestNumbersByLocationIntent")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -407,7 +407,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 sb = SkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
-sb.add_request_handler(GetLocationIntentHandler())
+sb.add_request_handler(GetLatestNumbersByLocationIntentHandler())
 sb.add_request_handler(GetCovidNumbersIntentHandler())
 sb.add_request_handler(GetTopCovidNumbersIntentHandler())
 sb.add_request_handler(GetBottomCovidNumbersIntentHandler())
