@@ -15,7 +15,7 @@ import pandas as pd
 import requests
 
 # from .lib.constants import states, state_geoids, urls
-import lib.constants
+from lib.constants import states, state_geoids, urls
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
