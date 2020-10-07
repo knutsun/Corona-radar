@@ -1,4 +1,5 @@
 # Corona-radar
+Skill-ID amzn1.ask.skill.a6d7d659-d846-4c73-a727-87d6b5b619ed
 
 An Alexa VUI to interact with data from the following APIs:
 
