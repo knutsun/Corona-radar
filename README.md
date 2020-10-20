@@ -6,6 +6,8 @@ An Alexa VUI to interact with data from the following APIs:
 https://coronavirusapi.com/ <br/>
 https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html
 
+![Skill page](https://i.imgur.com/z174o8d.png)
+
 The user can ask questions like
 
 | User request  | Alexa response | 
